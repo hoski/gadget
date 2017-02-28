@@ -127,6 +127,7 @@ void LikelihoodPrinter::setLikelihood(LikelihoodPtrVector& likevec) {
       case MIGRATIONPENALTYLIKELIHOOD:
         handle.logMessage(LOGWARN, "Warning in likelihoodprinter - printing not implemented for", like[i]->getName());
         break;
+      case PROGLIKELIHOOD:
       default:
         handle.logMessage(LOGFAIL, "Error in likelihoodprinter - unrecognised likelihood type", like[i]->getType());
         break;

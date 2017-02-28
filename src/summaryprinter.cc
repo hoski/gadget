@@ -42,11 +42,11 @@ SummaryPrinter::~SummaryPrinter() {
   outfile.clear();
 }
 
+// proglikelihood not working for this printer
 void SummaryPrinter::setLikelihood(LikelihoodPtrVector& likevec) {
   int i;
   for (i = 0; i < likevec.Size(); i++)
     like.resize(likevec[i]);
-
   for (i = 0; i < like.Size(); i++) {
     switch (like[i]->getType()) {
       case CATCHDISTRIBUTIONLIKELIHOOD:
@@ -65,6 +65,7 @@ void SummaryPrinter::setLikelihood(LikelihoodPtrVector& likevec) {
       case RECSTATISTICSLIKELIHOOD:
         handle.logMessage(LOGWARN, "Warning in summaryprinter - printing incomplete for", like[i]->getName());
         break;
+      case PROGLIKELIHOOD:
       default:
         handle.logMessage(LOGFAIL, "Error in summaryprinter - unrecognised likelihood type", like[i]->getType());
         break;
@@ -75,7 +76,6 @@ void SummaryPrinter::setLikelihood(LikelihoodPtrVector& likevec) {
 void SummaryPrinter::Print(const TimeClass* const TimeInfo, int printtime) {
   if ((TimeInfo->getTime() != TimeInfo->numTotalSteps()) || (printtime != printtimeid))
     return;
-
   int i;
   for (i = 0; i < like.Size(); i++)
     like[i]->printSummary(outfile);
