@@ -58,6 +58,7 @@ void SummaryPrinter::setLikelihood(LikelihoodPtrVector& likevec) {
       case SURVEYINDICESLIKELIHOOD:
       case UNDERSTOCKINGLIKELIHOOD:
       case BOUNDLIKELIHOOD:
+      case PROGLIKELIHOOD:
       case MIGRATIONPENALTYLIKELIHOOD:
       case MIGRATIONPROPORTIONLIKELIHOOD:
         break;
@@ -65,7 +66,6 @@ void SummaryPrinter::setLikelihood(LikelihoodPtrVector& likevec) {
       case RECSTATISTICSLIKELIHOOD:
         handle.logMessage(LOGWARN, "Warning in summaryprinter - printing incomplete for", like[i]->getName());
         break;
-      case PROGLIKELIHOOD:
       default:
         handle.logMessage(LOGFAIL, "Error in summaryprinter - unrecognised likelihood type", like[i]->getType());
         break;

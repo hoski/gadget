@@ -122,12 +122,13 @@ void LikelihoodPrinter::setLikelihood(LikelihoodPtrVector& likevec) {
       case MIGRATIONPROPORTIONLIKELIHOOD:
         outfile << "\n; year-step-area-ratio\n";
         break;
+      case PROGLIKELIHOOD:
+	break;
       case BOUNDLIKELIHOOD:
       case UNDERSTOCKINGLIKELIHOOD:
       case MIGRATIONPENALTYLIKELIHOOD:
         handle.logMessage(LOGWARN, "Warning in likelihoodprinter - printing not implemented for", like[i]->getName());
         break;
-      case PROGLIKELIHOOD:
       default:
         handle.logMessage(LOGFAIL, "Error in likelihoodprinter - unrecognised likelihood type", like[i]->getType());
         break;
